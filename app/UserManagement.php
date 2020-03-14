@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserManagement extends Model
+class userManagement extends Model
 {
 
     
