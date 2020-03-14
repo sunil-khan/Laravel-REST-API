@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\userManagement;
+use App\UserManagement;
 use Response;
 use Illuminate\Support\Facades\Cache;
 
@@ -21,7 +21,7 @@ class UserManagementController extends Controller
 
 
         $users = Cache::remember('users', 300, function () {
-            return userManagement::all()->toArray();
+            return UserManagement::all()->toArray();
         });
         return response()->json(['users' => $users]);     
         
@@ -66,7 +66,7 @@ class UserManagementController extends Controller
 
         unset($request['password_confirmation']);
         
-        $data = userManagement::create($request->all());
+        $data = UserManagement::create($request->all());
         return $data;
 
     }
@@ -85,7 +85,7 @@ class UserManagementController extends Controller
 
         $get_user = Cache::remember('get_user'.$id, 300, function () use ($id) 
         {
-            return userManagement::findOrfail($id);
+            return UserManagement::findOrfail($id);
         });
         return response()->json(['get_user' => $get_user]);
 
